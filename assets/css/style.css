@@ -445,6 +445,7 @@ p {
   opacity: 0;
   background-image: linear-gradient(298deg, var(--red), var(--yellow));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   left: 0;
   top: 0;
@@ -1044,6 +1045,7 @@ header nav a:hover .svg_img {
 .service-box .main-box {
   position: relative;
   -webkit-perspective: 1000px;
+  perspective: 1000px;
   -moz-perspective: 1000px;
 }
 .service-box .main-box:hover .box-front {
@@ -2393,4 +2395,63 @@ footer .ms-footer-detail .ms-social ul li a:hover {
             transform: rotate(0deg);
   }
 }
+
+
+.ms-project-box {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+}
+
+.ms-project-box:hover {
+  transform: translateY(-5px);
+}
+
+.ms-project-box h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ms-project-box p {
+  font-size: 14.5px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.project-tags {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.project-tags span {
+  background-color: #eef3f7;
+  color: #0366d6;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  margin: 4px 6px 0 0;
+  display: inline-block;
+}
+
+.project-links a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0073e6;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.project-links a:hover {
+  background-color: #005bb5;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -323,123 +323,102 @@
     <!-- Start Portfolio Section -->
     <section id="portfolio" class="ms-portfolio padding-tb-80">
         <div class="container">
-            <div class="section-title">
-                <h2>My <span>Projects</span></h2>
-                <span class="ligh-title">Portfolio</span>
+          <div class="section-title">
+            <h2>My <span>Projects</span></h2>
+            <span class="ligh-title">Portfolio</span>
+          </div>
+      
+          <div class="project-filters">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="ml">Machine Learning</button>
+            <button data-filter="dashboard">Dashboards</button>
+            <button data-filter="sql">SQL</button>
+          </div>
+      
+          <div class="project-grid">
+            <div class="project-card" data-category="ml">
+              <h3>Credit Card Default Prediction</h3>
+              <p>Ensemble model using Random Forest & SVM with SMOTE. Achieved 81% recall and 84% F1-score.</p>
+              <div class="project-tech">
+                <span>Python</span><span>SMOTE</span><span>Random Forest</span><span>SVM</span>
+              </div>
             </div>
-            <div class="row m-b-minus-24px">
-                <div class="portfolio-content">
-                    <div>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="portfolio-content-items">
-                                    <div class="row m-b-minus-30px">
-                                        <div class="col-lg-6 mix graphics templates">
-                                            <div class="ms-project-box">
-                                                <h3>Credit Card Default Prediction</h3>
-                                                <p>Developed an ensemble machine learning model using Random Forest and SVM to predict credit card defaults, applying SMOTE for class balance. Achieved 81% recall and 84% F1 score, effectively mitigating default risks.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix design">
-                                            <div class="ms-project-box">
-                                                <h3>Yes Bank Stock Closing Price Prediction</h3>
-
-                                                <p>Predicted Yes Bank's stock closing prices using Ridge Regression, Random Forest, and XGBoost Regressor, incorporating feature engineering and lag analysis. XGBoost Regressor achieved the best results with a high R² and adjusted R² score.</p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix design">
-                                            <div class="ms-project-box">
-                                                <h3>Netflix Movies and TV Shows Clustering</h3>
-
-                                                <p>Developed unsupervised machine learning models for Netflix content clustering using TF-IDF, PCA, and K-Means, creating 8 distinct clusters. Achieved a Silhouette score of 0.33 and Davies-Bouldin score of 1.3, enhancing content recommendation via cosine similarity.
-
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix development">
-                                            <div class="ms-project-box">
-                                                <h3>Google Merchandise Store Website Analysis</h3>
-
-                                                <p>Conducted comprehensive analyses using Google Analytics to identify trends and performance across various metrics, providing actionable insights for website optimization. Visualized user retention and conversion rates to enhance data-driven decision-making for marketing strategies.
-
-                                                </p>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix templates design">
-                                            <div class="ms-project-box">
-                                                <h3>FIFA,18 Power BI Dashboard</h3>
-
-                                                <p>Created a Power BI dashboard analyzing player data to provide insights for sports professionals on nationality distribution, wages, and player ratings. This tool supports data-driven decisions for sponsorships, team selection, and revenue optimization related to in-game items.
-
-                                                </p>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix development graphics">
-                                            <div class="ms-project-box">
-                                                <h3>Tableau Dashboard on AirBnB Booking Analysis</h3>
-
-                                                <p>Designed a Tableau dashboard for Airbnb's NYC dataset, highlighting insights on customer preferences and key hosting areas. The dashboard provides actionable recommendations to optimize hosting strategies and enhance customer experiences, boosting revenue.
-
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix templates design">
-                                            <div class="ms-project-box">
-                                                <h3>Atliq_Hardwares_Sales_Analytics:Excel</h3>
-
-                                                <p>Developed a customer performance report to track sales activities, comparing market performance against targets. Created Profit and Loss reports to assess financial performance and identify sales patterns through key performance indicators.
-
-                                                </p>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix development graphics">
-                                            <div class="ms-project-box">
-                                                <h3>Sports Event Analytics : SQL, PowerBI</h3>
-
-                                                <p>Executed end-to-end sports event analytics, loading data into SQL and performing analyses on customer counts and ticket sales. Utilized Power BI for visualizations, delivering insights on revenue contributions and customer behavior for strategic recommendations.
-
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix templates design">
-                                            <div class="ms-project-box">
-                                                <h3>Bank Customer Churn Prediction</h3>
-
-                                                <p>Developed machine learning models to predict bank customer churn, successfully identifying potential churners with high accuracy. The SVM model outperformed Logistic Regression, enabling targeted retention strategies based on key features influencing churn.
-
-                                                </p>
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mix development graphics">
-                                            <div class="ms-project-box">
-                                                <h3>Analysis and Prediction of Covid-19 Cases</h3>
-
-                                                <p>Conducted comprehensive data analysis on COVID-19 trends and developed predictive models using Linear and Polynomial Regression to forecast cases and recoveries. Engaged with public health stakeholders, emphasizing the importance of guidelines and presenting insights through effective data visualization and cleaning processes.
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      
+            <div class="project-card" data-category="ml">
+              <h3>Yes Bank Stock Price Prediction</h3>
+              <p>Used Ridge, Random Forest, XGBoost with lag analysis. XGBoost gave the best R² and adjusted R².</p>
+              <div class="project-tech">
+                <span>Python</span><span>XGBoost</span><span>Feature Engineering</span>
+              </div>
             </div>
+      
+            <div class="project-card" data-category="ml">
+              <h3>Netflix Movies & TV Clustering</h3>
+              <p>Used TF-IDF, PCA & K-Means to create 8 content clusters. Improved recommendations via cosine similarity.</p>
+              <div class="project-tech">
+                <span>Python</span><span>K-Means</span><span>PCA</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="dashboard">
+              <h3>FIFA 18 Power BI Dashboard</h3>
+              <p>Visualized player wages, nationality, and ratings. Supported decision-making for teams and sponsors.</p>
+              <div class="project-tech">
+                <span>Power BI</span><span>Excel</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="dashboard">
+              <h3>Airbnb Booking Tableau Dashboard</h3>
+              <p>Analyzed NYC booking trends to highlight hosting opportunities and customer preferences.</p>
+              <div class="project-tech">
+                <span>Tableau</span><span>Visualization</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="sql">
+              <h3>Sports Event Analytics</h3>
+              <p>Analyzed ticket sales and customer data with SQL & Power BI to offer event strategy recommendations.</p>
+              <div class="project-tech">
+                <span>SQL</span><span>Power BI</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="dashboard">
+              <h3>Atliq Hardware Sales Dashboard</h3>
+              <p>Created Excel reports for customer performance, P&L analysis, and market comparison KPIs.</p>
+              <div class="project-tech">
+                <span>Excel</span><span>Pivot Tables</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="ml">
+              <h3>Customer Churn Prediction</h3>
+              <p>Predicted churn using SVM and Logistic Regression. SVM outperformed in accuracy and key feature targeting.</p>
+              <div class="project-tech">
+                <span>Python</span><span>SVM</span><span>EDA</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="ml">
+              <h3>COVID-19 Analysis & Prediction</h3>
+              <p>Forecasted cases using Linear and Polynomial Regression. Visualized and cleaned data for stakeholder use.</p>
+              <div class="project-tech">
+                <span>Python</span><span>Regression</span><span>Visualization</span>
+              </div>
+            </div>
+      
+            <div class="project-card" data-category="dashboard">
+              <h3>Google Merchandise Store Analysis</h3>
+              <p>Used GA to derive insights on user behavior, retention, and conversion for marketing optimization.</p>
+              <div class="project-tech">
+                <span>Google Analytics</span><span>Visualization</span>
+              </div>
+            </div>
+      
+          </div>
         </div>
-    </section>
+      </section>
     <!-- End Portfolio Section -->
 
     <!-- Start Counter Section -->
