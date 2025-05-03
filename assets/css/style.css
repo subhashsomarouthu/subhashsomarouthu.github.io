@@ -261,3 +261,44 @@ display: inline-block;
     margin: 0;
   }
 }
+
+
+/* === Sidebar List Fix === */
+.ms-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ms-sidebar ul li {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* === Responsive Hero Section Fix === */
+@media (max-width: 768px) {
+  .ms-hero .hero-content {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .ms-hero .ms-hero-detail {
+    text-align: center !important;
+    margin: 0 auto;
+  }
+
+  .ms-hero .ms-hero-img {
+    max-width: 250px;
+    margin: 20px auto;
+  }
+
+  .ms-hero .ms-hero-name {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ms-hero .ms-hero-name h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
