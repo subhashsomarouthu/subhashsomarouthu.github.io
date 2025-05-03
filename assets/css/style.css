@@ -446,6 +446,7 @@ p {
   background-image: linear-gradient(298deg, var(--red), var(--yellow));
   -webkit-background-clip: text;
   background-clip: text;
+  
   -webkit-text-fill-color: transparent;
   left: 0;
   top: 0;
@@ -1416,201 +1417,147 @@ header nav a:hover .svg_img {
 }
 
 /** Start Portfolio Section **/
-.ms-portfolio .section-title .ligh-title {
-  -webkit-transform: translateY(-63%);
-          transform: translateY(-63%);
-}
 
-.portfolio-tabs {
-  margin-bottom: 50px;
-  text-align: center;
-}
-.portfolio-tabs ul {
-  padding-left: 0;
-}
-.portfolio-tabs ul li {
-  display: inline-block;
-  cursor: pointer;
-  padding: 0 10px;
-  font-weight: 600;
-  margin: 0px 10px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  color: #333;
-  font-size: 16px;
-  line-height: 11px;
-}
-.portfolio-tabs ul li:hover {
-  color: #716fff;
-}
-
-li.mixitup-control-active {
-  color: #ff6f91 !important;
-}
-
-.portfolio-img img {
-  width: 100%;
-  height: 100%;
-}
-
-.fancybox-image {
-  padding: 0 15px;
-}
-
-.ms-project-box {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  width: 100%;
-  margin-bottom: 30px;
-  padding: 30px;
-  position: relative;
-  cursor: default;
-  border-radius: 15px;
-  background: #fff;
-  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
-          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
-}
-.ms-project-box h3 {
-  color: #333;
-  margin-top: 0;
-  font-size: 20px;
-  font-weight: 600;
-}
-.ms-project-box .links {
-  margin-bottom: 10px;
-  color: #999;
-}
-.ms-project-box a {
-  font-size: 14px;
-  color: #999;
-  font-weight: 300;
-}
-.ms-project-box a:hover {
-  color: #716fff;
-}
-.ms-project-box p {
-  font-size: 14px;
-}
-.ms-project-box p a {
-  color: #ff6f91;
-}
-.ms-project-box .ms-info {
+/* === Responsive Grid Layout for Projects === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
   margin-top: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  }
+  
+  /* Uniform Card Layout */
+  .project-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
   display: flex;
-}
-.ms-project-box img {
-  display: block;
-  position: relative;
-}
-.ms-project-box .portfolio-img {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  width: 200px;
-  overflow: hidden;
-  border-radius: 15px;
-  position: relative;
-  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.09);
-          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.09);
-}
-.ms-project-box .portfolio-img a {
-  background-attachment: fixed;
-  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+  
+  .project-card:hover {
+  transform: translateY(-5px);
+  }
+  
+  /* Auto-cropped image thumbnail */
+  .project-thumb {
   width: 100%;
-  background-size: 200px;
-  background-position: center;
-  background-attachment: inherit;
-  background-repeat: no-repeat;
-  display: block;
-  position: relative;
-}
-.ms-project-box .portfolio-img img {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-.ms-project-box .portfolio-img .overlay {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 40px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* GitHub and demo buttons */
+  .project-links {
+  margin-top: 10px;
+  }
+  
+  .project-links a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 6px 14px;
+  background: #ff6347;
   color: #fff;
-  opacity: 0;
-}
-.ms-project-box:hover .portfolio-img {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.ms-project-box:hover .portfolio-img img {
-  -webkit-transform: rotate(-5deg) scale(1.2);
-          transform: rotate(-5deg) scale(1.2);
-}
-.ms-project-box:hover .portfolio-img .overlay {
-  opacity: 1;
-}
-.ms-project-box:hover a.info {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-.ms-project-box a.info {
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  }
+  
+  .project-links a:hover {
+  background: #e5533f;
   text-decoration: none;
-  border: 1px solid #fff;
-  border-radius: 15px;
-}
-.ms-project-box a.info:hover {
-  background-color: #fff;
-  color: #716fff;
-}
-.ms-project-box a.info {
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7);
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  opacity: 0;
-  color: #fff;
-}
-.ms-project-box .ms-detail {
-  padding-left: 30px;
-}
-.ms-project-box .ms-detail ul {
-  margin: 0;
-  padding: 0;
-}
-.ms-project-box .ms-detail ul li {
-  padding: 5px 0;
-}
-
-.fancybox-progress {
-  background: #716fff;
-}
+  }
+  
+  /* Tech badges */
+  .project-tech {
+  margin: 10px 0;
+  }
+  
+  .project-tech span {
+  background: #f0f0f0;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  }
+  
+  /* === Responsive Grid Layout for Projects === */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  /* Uniform Card Layout */
+  .project-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Auto-cropped image thumbnail */
+  .project-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* GitHub and demo buttons */
+  .project-links {
+    margin-top: 10px;
+  }
+  
+  .project-links a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 6px 14px;
+    background: #ff6347;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+  
+  .project-links a:hover {
+    background: #e5533f;
+    text-decoration: none;
+  }
+  
+  /* Tech badges */
+  .project-tech {
+    margin: 10px 0;
+  }
+  
+  .project-tech span {
+    background: #f0f0f0;
+    color: #333;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-right: 6px;
+    display: inline-block;
+  }
+  
 
 /** End Portfolio Section **/
 /*===== Counter =====*/
@@ -2396,144 +2343,3 @@ footer .ms-footer-detail .ms-social ul li a:hover {
   }
 }
 /*# sourceMappingURL=style.css.map */
-
-/* === Responsive Grid Layout for Projects === */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-  }
-  
-  /* Uniform Card Layout */
-  .project-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  }
-  
-  .project-card:hover {
-  transform: translateY(-5px);
-  }
-  
-  /* Auto-cropped image thumbnail */
-  .project-thumb {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* GitHub and demo buttons */
-  .project-links {
-  margin-top: 10px;
-  }
-  
-  .project-links a {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 6px 14px;
-  background: #ff6347;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-  }
-  
-  .project-links a:hover {
-  background: #e5533f;
-  text-decoration: none;
-  }
-  
-  /* Tech badges */
-  .project-tech {
-  margin: 10px 0;
-  }
-  
-  .project-tech span {
-  background: #f0f0f0;
-  color: #333;
-  padding: 4px 8px;
-  border-radius: 5px;
-  font-size: 12px;
-  margin-right: 6px;
-  display: inline-block;
-  }
-  
-  /* === Responsive Grid Layout for Projects === */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-  }
-  
-  /* Uniform Card Layout */
-  .project-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Auto-cropped image thumbnail */
-  .project-thumb {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* GitHub and demo buttons */
-  .project-links {
-    margin-top: 10px;
-  }
-  
-  .project-links a {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 6px 14px;
-    background: #ff6347;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-  }
-  
-  .project-links a:hover {
-    background: #e5533f;
-    text-decoration: none;
-  }
-  
-  /* Tech badges */
-  .project-tech {
-    margin: 10px 0;
-  }
-  
-  .project-tech span {
-    background: #f0f0f0;
-    color: #333;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 12px;
-    margin-right: 6px;
-    display: inline-block;
-  }
-  
