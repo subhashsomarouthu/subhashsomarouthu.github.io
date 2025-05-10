@@ -918,44 +918,34 @@ header nav a:hover .svg_img {
   right: 0;
 }
 
-.ms-skill-progress {
-  height: 100%;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
 }
 
-/* === Modern Horizontal Skill Bars === */
-.skill-bar {
-  margin-bottom: 25px;
-}
-
-.skill-bar h4 {
+.skill-item {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: 8px;
   color: #333;
-  font-family: "Poppins", sans-serif;
+  transition: transform 0.3s ease;
 }
 
-.skill-bar .bar {
-  background-color: #eee;
-  border-radius: 10px;
-  height: 14px;
-  overflow: hidden;
+.skill-item i {
+  font-size: 18px;
+  margin-right: 10px;
+  color: #716fff;
 }
 
-.skill-bar .progress {
-  height: 100%;
-  background: linear-gradient(to right, #716fff, #ff6f91);
-  border-radius: 10px;
-  transition: width 1s ease-in-out;
-}
-
-/* Remove old circular progress if no longer needed */
-.ms-about .ms-box .progress,
-.ms-about .ms-box svg,
-.ms-about .ms-box .track,
-.ms-about .ms-box .fill,
-.ms-about .ms-box .value {
-  display: none;
+.skill-item:hover {
+  transform: translateY(-4px);
 }
 
 
