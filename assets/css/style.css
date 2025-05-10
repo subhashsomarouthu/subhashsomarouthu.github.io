@@ -851,6 +851,8 @@ header nav a:hover .svg_img {
 }
 
 /*===== About css =====*/
+
+
 .ms-about-detail h4 {
   margin-bottom: 30px;
   font-size: 20px;
@@ -2342,4 +2344,33 @@ footer .ms-footer-detail .ms-social ul li a:hover {
             transform: rotate(0deg);
   }
 }
+
+
+
+/* === Modern Horizontal Skill Bars === */
+.skill-bar {
+  margin-bottom: 25px;
+}
+
+.skill-bar h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.skill-bar .bar {
+  background-color: #eee;
+  border-radius: 10px;
+  height: 14px;
+  overflow: hidden;
+}
+
+.skill-bar .progress {
+  height: 100%;
+  background: linear-gradient(to right, #716fff, #ff6f91);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
 /*# sourceMappingURL=style.css.map */
