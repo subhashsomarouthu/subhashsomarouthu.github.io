@@ -973,6 +973,12 @@ header nav a:hover .svg_img {
   transform: translateY(-4px);
 }
 
+.skills .ligh-title {
+  top: 90%;
+  font-size: 120px;
+  opacity: 0.03;
+}
+
 
 
 
