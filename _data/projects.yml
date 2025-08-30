@@ -67,6 +67,7 @@
   tech: ["Google Analytics", "Visualization"]
   github_url: "https://github.com/subhashsomarouthu/Google_Analytics_LookerStudio"
   demo_url: ""
+  
 - name: "Medical_chatbot"
   image: "assets/img/portfolio/Healthcare-Chatbot.jpg"
   description: "Bio medical chatbot using RAG implemantation"
