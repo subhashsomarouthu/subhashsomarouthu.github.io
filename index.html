@@ -298,6 +298,8 @@
       <h2>My <span>Projects</span></h2>
       <span class="ligh-title">Portfolio</span>
     </div>
+
+    <div class="projects-grid"></div>
     {% for project in site.data.projects %}
 <div class="project-card">
   <img src="{{ project.image }}" alt="{{ project.name }}" class="project-thumb" loading="lazy">
@@ -313,6 +315,7 @@
     {% if project.demo_url and project.demo_url != "" %}
       <a href="{{ project.demo_url }}" target="_blank">Live Demo</a>
     {% endif %}
+  </div>
   </div>
 </div>
 {% endfor %}
