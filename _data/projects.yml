@@ -1,0 +1,69 @@
+- name: "Credit Card Default Prediction"
+  image: "assets/img/portfolio/creditcard-default.png"
+  description: "Built an ensemble classifier using Random Forest and SVM with SMOTE to handle class imbalance. Achieved 84% F1-score and 81% recall."
+  tech: ["Python", "SMOTE", "Random Forest", "SVM"]
+  github_url: "https://github.com/subhashsomarouthu/Credit_Card_Default_Prediction"
+  demo_url: ""
+
+- name: "Yes Bank Stock Price Prediction"
+  image: "assets/img/portfolio/yesbank-stock.png"
+  description: "Used lag-based features with Ridge, Random Forest, and XGBoost regression. XGBoost achieved highest R² and adjusted R² scores."
+  tech: ["Python", "XGBoost", "Feature Engineering"]
+  github_url: "https://github.com/subhashsomarouthu/Yes_Bank_Stock_Closing_Price_Prediction"
+  demo_url: ""
+
+- name: "Netflix Movies & TV Clustering"
+  image: "assets/img/portfolio/netflix-clustering.png"
+  description: "Used TF-IDF, PCA, and K-Means clustering to segment content into 8 groups, enhancing recommendation performance."
+  tech: ["Python", "K-Means", "PCA"]
+  github_url: "https://github.com/subhashsomarouthu/Netflix-Movies-and-TV-Shows-Clustering"
+  demo_url: ""
+
+- name: "FIFA 18 Power BI Dashboard"
+  image: "assets/img/portfolio/fifa18-dashboard.png"
+  description: "Interactive dashboard showcasing player wages, nationality, and ratings to assist sponsorship and recruitment decisions."
+  tech: ["Power BI", "Excel"]
+  github_url: "https://github.com/subhashsomarouthu/FIFA18_Player_Ratings_PowerBI_Dashboard"
+  demo_url: ""
+
+- name: "Airbnb Booking Tableau Dashboard"
+  image: "assets/img/portfolio/airbnb-tableau.png"
+  description: "Created Tableau visualizations to analyze NYC Airbnb trends, uncovering host opportunities and booking behaviors."
+  tech: ["Tableau", "Visualization"]
+  github_url: "https://github.com/subhashsomarouthu/AirBnb-Booking-Analysis"
+  demo_url: ""
+
+- name: "Sports Event Analytics"
+  image: "assets/img/portfolio/sports-event-sql.png"
+  description: "SQL-driven analysis of ticket sales and customer data. Insights helped optimize event planning and marketing strategies."
+  tech: ["SQL", "Power BI"]
+  github_url: "https://github.com/subhashsomarouthu/Sports_Event_Analytics"
+  demo_url: ""
+
+- name: "Atliq Hardware Sales Dashboard"
+  image: "assets/img/portfolio/atliq-dashboard.png"
+  description: "Excel dashboards analyzing P&L, customer segments, and sales trends across regions to guide executive decisions."
+  tech: ["Excel", "Pivot Tables"]
+  github_url: "https://github.com/subhashsomarouthu/Atliq_Sales_Analytics_Excel_casestudy"
+  demo_url: ""
+
+- name: "Customer Churn Prediction"
+  image: "assets/img/portfolio/churn-prediction.jpg"
+  description: "Implemented Logistic Regression and SVM to predict customer churn. SVM outperformed on accuracy and key feature selection."
+  tech: ["Python", "SVM", "EDA"]
+  github_url: "https://github.com/subhashsomarouthu/Customer_Churn_Prediction"
+  demo_url: ""
+
+- name: "COVID-19 Analysis & Prediction"
+  image: "assets/img/portfolio/covid19-prediction.jpg"
+  description: "Performed EDA and built Linear/Polynomial Regression models to forecast case trends and assist public decision-making."
+  tech: ["Python", "Regression", "Visualization"]
+  github_url: "https://github.com/subhashsomarouthu/ANALYSIS-AND-PREDICTION-OF-COVID-19_CASES-"
+  demo_url: ""
+
+- name: "Google Merchandise Store Analysis"
+  image: "assets/img/portfolio/google-merchandise.png"
+  description: "Analyzed user behavior and conversions using GA data to provide recommendations for marketing and UX optimization."
+  tech: ["Google Analytics", "Visualization"]
+  github_url: "https://github.com/subhashsomarouthu/Google_Analytics_LookerStudio"
+  demo_url: ""
