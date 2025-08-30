@@ -1,6 +1,5 @@
 name: Add New Project to Portfolio
 
-# This allows the action to be manually triggered from the Actions tab
 on:
   workflow_dispatch:
     inputs:
@@ -15,25 +14,20 @@ on:
 jobs:
   add-project:
     runs-on: ubuntu-latest
-    # Grant permissions for the action to read repo contents and write back
     permissions:
       contents: write
     steps:
-      # 1. Checks out your portfolio repository's code so the script can access it
       - name: Check out repo
         uses: actions/checkout@v4
 
-      # 2. Fetches repo data using GitHub CLI and updates the YAML file
       - name: Fetch repo details and update data file
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # A special, automatically-provided token
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_URL: ${{ github.event.inputs.repo_url }}
           IMAGE_PATH: ${{ github.event.inputs.image_path }}
         run: |
-          # Use the official GitHub CLI to get repository details in JSON format
           repo_details=$(gh repo view $REPO_URL --json name,description,url,repositoryTopics)
 
-          # Check if the gh command was successful
           if [ -z "$repo_details" ]; then
             echo "::error::Could not fetch repository details. Check if the URL is correct and the repository is public."
             exit 1
@@ -41,24 +35,21 @@ jobs:
 
           echo "Successfully fetched details for: $(echo $repo_details | jq -r .name)"
 
-          # Use the 'jq' tool to parse the JSON and format it as a new YAML entry.
-          # This creates a multi-line string that matches your projects.yml format.
+          # This 'jq' command is now updated to handle null topics
           new_entry=$(echo "$repo_details" | jq -r --arg image_path "$IMAGE_PATH" '
             (
               "- name: \"\(.name)\"\n" +
               "  image: \"\($image_path)\"\n" +
               "  description: \"\(.description // "No description provided.")\"\n" +
-              "  tech: \(.repositoryTopics | map(.topic.name) | tojson)\n" +
+              "  tech: \((.repositoryTopics // []) | map(.topic.name) | tojson)\n" + # <-- THIS IS THE LINE THAT WAS FIXED
               "  github_url: \"\(.url)\"\n" +
               "  demo_url: \"\""
             )
           ')
 
-          # Append the new entry to the end of the projects data file
           echo -e "\n${new_entry}" >> _data/projects.yml
           echo "Updated _data/projects.yml with the new project."
 
-      # 3. Commits the changes back to your repository
       - name: Commit and push if files changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
