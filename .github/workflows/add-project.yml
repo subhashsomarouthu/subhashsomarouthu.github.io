@@ -67,13 +67,19 @@ jobs:
                   repo_url_val=$(echo "$repo_details" | jq -r '.url')
                   
                   repo_topics=$(echo "$repo_details" | jq -r '
-                    (if .repositoryTopics | has("nodes") then 
-                      .repositoryTopics.nodes 
-                    else 
-                      .repositoryTopics 
-                    end // []) 
-                    | if length > 0 then 
-                        map("    - " + (.name // .topic.name // .)) | join("\n")
+                    (.repositoryTopics // [])
+                    | if type == "array" then 
+                        if length > 0 then 
+                          map("    - " + (if type == "string" then . else (.name // .topic.name // .) end)) | join("\n")
+                        else
+                          "    - general"
+                        end
+                      elif type == "object" and has("nodes") then
+                        if (.nodes | length) > 0 then
+                          .nodes | map("    - " + (.name // .topic.name // .)) | join("\n")
+                        else
+                          "    - general"
+                        end
                       else
                         "    - general"
                       end
