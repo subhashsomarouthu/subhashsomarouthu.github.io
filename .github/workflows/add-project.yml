@@ -25,7 +25,6 @@ jobs:
           yq e '.[] | .github_url' _data/projects.yml > existing_projects.txt
           
           echo "Fetching all public repositories for user ${GH_USER}..."
-          # Corrected the deprecated '--public' flag to '--visibility=public'
           gh repo list ${GH_USER} --visibility=public --json url --jq '.[] | .url' > all_public_repos.txt
 
           changes_made=false
@@ -38,7 +37,7 @@ jobs:
               cover_image_path=""
               if gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.png -q ".name" &> /dev/null; then
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/$(basename $repo_url)/main/portfolio-cover.png"
-              elif gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.jpg -q ".name" &> /dev/null; then
+              elif gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.jpg -q ".name" &> /dev/null; a
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/$(basename $repo_url)/main/portfolio-cover.jpg"
               fi
 
@@ -48,14 +47,14 @@ jobs:
                 
                 repo_details=$(gh repo view $repo_url --json name,description,url,repositoryTopics)
                 
-                # This 'jq' command is now updated to handle inconsistent topic structures
+                # This 'jq' command has been simplified to avoid shell quoting issues
                 new_entry=$(echo "$repo_details" | jq -r --arg image_path "$cover_image_path" '
                   (
                     "- name: \"\(.name)\"\n" +
                     "  image: \"\($image_path)\"\n" +
                     "  description: \"\(if .description and .description != "" then .description else "No description provided." end)\"\n" +
-                    # THIS IS THE CORRECTED LINE: It now checks for the 'nodes' field before trying to access it
-                    "  tech: \((if .repositoryTopics | has(\"nodes\") then .repositoryTopics.nodes else (.repositoryTopics // []) end) | map(.topic.name) | tojson)\n" +
+                    # THIS IS THE CORRECTED LINE: A simpler, more robust way to handle topics
+                    "  tech: \((.repositoryTopics.nodes // .repositoryTopics // []) | map(.topic.name) | tojson)\n" +
                     "  github_url: \"\(.url)\"\n" +
                     "  demo_url: \"\""
                   )
