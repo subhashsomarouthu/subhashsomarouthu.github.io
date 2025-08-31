@@ -84,16 +84,3 @@
 
 
 
-- name: "VGG16_Image_classification"
-  image: "assets/img/portfolio/image_classification.jpeg"
-  description: ""
-  tech: []
-  github_url: "https://github.com/subhashsomarouthu/VGG16_Image_classification"
-  demo_url: ""
-
-- name: "HomeLLC_Housing_Price_Prediction"
-  image: "https://raw.githubusercontent.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction/main/portfolio-cover.png"
-  description: ""
-  tech: []
-  github_url: "https://github.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction"
-  demo_url: ""
