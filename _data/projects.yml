@@ -84,3 +84,10 @@
 
 
 
+
+- name: "HomeLLC_Housing_Price_Prediction"
+  image: "https://raw.githubusercontent.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction/main/portfolio-cover.png"
+  description: "Predicting U.S. housing prices (2003-2023) using macroeconomic data from FRED with L Regression and decision tree models."
+  tech: [null,null,null,null,null,null]
+  github_url: "https://github.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction"
+  demo_url: ""
