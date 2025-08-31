@@ -37,7 +37,8 @@ jobs:
               cover_image_path=""
               if gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.png -q ".name" &> /dev/null; then
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/$(basename $repo_url)/main/portfolio-cover.png"
-              elif gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.jpg -q ".name" &> /dev/null; a
+              # THIS IS THE CORRECTED LINE - The stray 'a' has been removed
+              elif gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.jpg -q ".name" &> /dev/null; then
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/$(basename $repo_url)/main/portfolio-cover.jpg"
               fi
 
@@ -47,13 +48,11 @@ jobs:
                 
                 repo_details=$(gh repo view $repo_url --json name,description,url,repositoryTopics)
                 
-                # This 'jq' command has been simplified to avoid shell quoting issues
                 new_entry=$(echo "$repo_details" | jq -r --arg image_path "$cover_image_path" '
                   (
                     "- name: \"\(.name)\"\n" +
                     "  image: \"\($image_path)\"\n" +
                     "  description: \"\(if .description and .description != "" then .description else "No description provided." end)\"\n" +
-                    # THIS IS THE CORRECTED LINE: A simpler, more robust way to handle topics
                     "  tech: \((.repositoryTopics.nodes // .repositoryTopics // []) | map(.topic.name) | tojson)\n" +
                     "  github_url: \"\(.url)\"\n" +
                     "  demo_url: \"\""
@@ -84,4 +83,4 @@ jobs:
           commit_message: "feat: Automatically add new projects to portfolio"
           file_pattern: _data/projects.yml
           commit_user_name: "GitHub Actions Bot"
-          commit_user_email: "github-actions@github.com"
+          commit_user_email: "github-components@github.com"
