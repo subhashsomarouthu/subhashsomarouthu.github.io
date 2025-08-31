@@ -494,39 +494,5 @@
    Project Grid Layout
 ====================================== */
 
-.projects-grid {
-  display: grid;
-  /* Start with 1 column for mobile devices */
-  grid-template-columns: 1fr;
-  gap: 30px; /* This is the space between the cards */
-}
 
-/* For tablet-sized screens and larger */
-@media (min-width: 768px) {
-  .projects-grid {
-    /* Switch to 2 columns */
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* For desktop-sized screens and larger */
-@media (min-width: 1200px) {
-  .projects-grid {
-    /* Switch to the 3 columns you wanted */
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Optional: To make all cards in a row the same height,
-   even if their description lengths are different. */
-.project-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.project-card .project-links {
-    margin-top: auto; /* Pushes the GitHub button to the bottom */
-}
 /*# sourceMappingURL=responsive.css.map */
