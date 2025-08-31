@@ -2,7 +2,7 @@ name: Nightly Portfolio Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 3 * * *'  # Fixed: was '0 3 * **'
+    - cron: '0 3 * * *'
 
 jobs:
   update-portfolio:
@@ -25,7 +25,6 @@ jobs:
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
           
           echo "Fetching existing projects from _data/projects.yml..."
-          # Fixed: was *data/projects.yml
           if [ -f "_data/projects.yml" ]; then
             yq e '.[] | .github_url' _data/projects.yml > existing_projects.txt
           else
@@ -34,7 +33,6 @@ jobs:
           fi
           
           echo "Fetching all public repositories for user ${GH_USER}..."
-          # Added error handling
           if ! gh repo list ${GH_USER} --visibility=public --json url --jq '.[] | .url' > all_public_repos.txt; then
             echo "Error: Failed to fetch repositories. Check if user exists and has public repos."
             echo "changes=false" >> $GITHUB_OUTPUT
@@ -45,17 +43,14 @@ jobs:
           echo "Comparing lists to find new projects..."
           
           while read -r repo_url; do
-            # Skip empty lines
             [ -z "$repo_url" ] && continue
             
-            # Fixed: was existing*projects.txt
             if ! grep -q "$repo_url" existing_projects.txt; then
               echo "Found new repository: $repo_url"
               
               repo_name=$(basename "$repo_url")
               cover_image_path=""
               
-              # Check for portfolio cover images with better error handling
               if gh api "repos/${GH_USER}/${repo_name}/contents/portfolio-cover.png" -q ".name" &> /dev/null; then
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/${repo_name}/main/portfolio-cover.png"
               elif gh api "repos/${GH_USER}/${repo_name}/contents/portfolio-cover.jpg" -q ".name" &> /dev/null; then
@@ -66,13 +61,11 @@ jobs:
                 echo "Found cover image: $cover_image_path"
                 changes_made=true
                 
-                # Fetch repository details with error handling
                 if repo_details=$(gh repo view "$repo_url" --json name,description,url,repositoryTopics); then
                   repo_name_val=$(echo "$repo_details" | jq -r '.name')
                   repo_desc=$(echo "$repo_details" | jq -r 'if .description and .description != "" and .description != null then .description else "No description provided." end')
                   repo_url_val=$(echo "$repo_details" | jq -r '.url')
                   
-                  # Handle topics with better null checking
                   repo_topics=$(echo "$repo_details" | jq -r '
                     (if .repositoryTopics | has("nodes") then 
                       .repositoryTopics.nodes 
@@ -86,27 +79,21 @@ jobs:
                       end
                   ')
                   
-                  # Escape quotes in description and name
                   repo_desc=$(echo "$repo_desc" | sed 's/"/\\"/g')
                   repo_name_val=$(echo "$repo_name_val" | sed 's/"/\\"/g')
                   
                   # Create new entry
-                  # Create new entry with proper escaping
-                  cat >> _data/projects.yml <<EOF
-- name: "${repo_name_val}"
-  image: "${cover_image_path}"
-  description: "${repo_desc}"
-  github_url: "${repo_url_val}"
-  demo_url: ""
-  tech:
-${repo_topics}
-EOF
-                  
-                  # Ensure _data directory exists
                   mkdir -p _data
+                  {
+                    echo "- name: \"${repo_name_val}\""
+                    echo "  image: \"${cover_image_path}\""
+                    echo "  description: \"${repo_desc}\""
+                    echo "  github_url: \"${repo_url_val}\""
+                    echo "  demo_url: \"\""
+                    echo "  tech:"
+                    echo "${repo_topics}"
+                  } >> _data/projects.yml
                   
-                  # Add to projects file
-                  echo "${new_entry}" >> _data/projects.yml
                   echo "Added ${repo_url} to _data/projects.yml"
                 else
                   echo "Warning: Failed to fetch details for ${repo_url}"
@@ -117,7 +104,6 @@ EOF
             fi
           done < all_public_repos.txt
           
-          # Set output
           if [ "$changes_made" = true ]; then
             echo "Changes were made. Proceeding to commit."
             echo "changes=true" >> $GITHUB_OUTPUT
