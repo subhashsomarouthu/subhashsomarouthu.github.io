@@ -84,3 +84,28 @@
 
 
 
+- name: "VGG16_Image_classification"
+  image: "https://raw.githubusercontent.com/subhashsomarouthu/VGG16_Image_classification/main/portfolio-cover.png"
+  description: "An interpretable multi-class image classification model using VGG16, enhanced with metadata features and explained with LIME."
+  github_url: "https://github.com/subhashsomarouthu/VGG16_Image_classification"
+  demo_url: ""
+  tech:
+    - image-classification
+    - computer-vision
+    - keras
+    - lime
+    - tensorflow
+    - transfer-learning
+    - vgg16-model
+- name: "HomeLLC_Housing_Price_Prediction"
+  image: "https://raw.githubusercontent.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction/main/portfolio-cover.png"
+  description: "Predicting U.S. housing prices (2003-2023) using macroeconomic data from FRED with Regression and decision tree models."
+  github_url: "https://github.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction"
+  demo_url: ""
+  tech:
+    - linear-regression
+    - predictive-modeling
+    - python
+    - scikit-learn
+    - time-series-analysis
+    - xgboost-regression
