@@ -91,3 +91,10 @@
   tech: [null,null,null,null,null,null]
   github_url: "https://github.com/subhashsomarouthu/HomeLLC_Housing_Price_Prediction"
   demo_url: ""
+
+- name: "VGG16_Image_classification"
+  image: "https://raw.githubusercontent.com/subhashsomarouthu/VGG16_Image_classification/main/portfolio-cover.png"
+  description: "An interpretable multi-class image classification model using VGG16, enhanced with metadata features and explained with LIME."
+  tech: [null,null,null,null,null,null,null]
+  github_url: "https://github.com/subhashsomarouthu/VGG16_Image_classification"
+  demo_url: ""
