@@ -529,4 +529,22 @@
 .project-card .project-links {
     margin-top: auto; /* Pushes the GitHub button to the bottom */
 }
+
+
+/* ===================================
+   Project Card Layout Fixes
+====================================== */
+
+/* Universal box-sizing for better layout calculations */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Force all project images to a uniform height */
+.project-thumb {
+  width: 100%;
+  height: 200px; /* You can adjust this height */
+  object-fit: cover; /* This prevents images from stretching or squishing */
+  border-radius: 8px; /* Optional: adds slightly rounded corners to images */
+}
 /*# sourceMappingURL=responsive.css.map */
