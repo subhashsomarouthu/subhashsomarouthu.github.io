@@ -91,7 +91,8 @@ jobs:
                   repo_name_val=$(echo "$repo_name_val" | sed 's/"/\\"/g')
                   
                   # Create new entry
-                  new_entry=$(cat <<EOF
+                  # Create new entry with proper escaping
+                  cat >> _data/projects.yml <<EOF
 - name: "${repo_name_val}"
   image: "${cover_image_path}"
   description: "${repo_desc}"
@@ -100,7 +101,6 @@ jobs:
   tech:
 ${repo_topics}
 EOF
-)
                   
                   # Ensure _data directory exists
                   mkdir -p _data
