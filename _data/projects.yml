@@ -74,3 +74,10 @@
   tech: []
   github_url: "https://github.com/subhashsomarouthu/Medical_chatbot"
   demo_url: ""
+
+- name: "Sentiment_Analysis_transformer"
+  image: "assets/img/portfolio/sentiment_analysis.jpg"
+  description: "Yelp data sentiment analysis using Non - causal Transformer"
+  tech: []
+  github_url: "https://github.com/subhashsomarouthu/Sentiment_Analysis_transformer"
+  demo_url: ""
