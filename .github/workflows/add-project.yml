@@ -1,10 +1,7 @@
 name: Nightly Portfolio Update
 
 on:
-  # Allows you to run this workflow manually from the Actions tab for testing
   workflow_dispatch:
-
-  # Runs automatically every night at 3:00 AM UTC (you can adjust this)
   schedule:
     - cron: '0 3 * * *'
 
@@ -12,41 +9,31 @@ jobs:
   update-portfolio:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Important: grants permission to commit changes
+      contents: write
     steps:
-      # 1. Check out your portfolio's code so the script can access it
       - name: Check out repo
         uses: actions/checkout@v4
 
-      # 2. This is the main script that finds and adds new projects
       - name: Discover and add new repositories
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USER: ${{ github.repository_owner }}
         run: |
-          # Install yq, a command-line tool for parsing YAML
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
 
           echo "Fetching existing projects from _data/projects.yml..."
-          # Extract all existing github_url values from the YAML file into a temporary list
           yq e '.[] | .github_url' _data/projects.yml > existing_projects.txt
           
           echo "Fetching all public repositories for user ${GH_USER}..."
-          # Get a list of all public repository URLs for your user account
           gh repo list ${GH_USER} --public --json url --jq '.[] | .url' > all_public_repos.txt
 
-          # A flag to track if we made any changes
           changes_made=false
-
           echo "Comparing lists to find new projects..."
-          # Loop through each public repository
+
           while read repo_url; do
-            # Check if the repository URL is already in our list of existing projects
             if ! grep -q "$repo_url" existing_projects.txt; then
               echo "Found new repository: $repo_url"
               
-              # For this new repo, check if a 'portfolio-cover.png' or '.jpg' exists
-              # We use 'gh api' to query the repository's contents
               cover_image_path=""
               if gh api repos/${GH_USER}/$(basename $repo_url)/contents/portfolio-cover.png -q ".name" &> /dev/null; then
                 cover_image_path="https://raw.githubusercontent.com/${GH_USER}/$(basename $repo_url)/main/portfolio-cover.png"
@@ -58,22 +45,20 @@ jobs:
                 echo "Found cover image: $cover_image_path"
                 changes_made=true
                 
-                # Fetch the new repository's full details
                 repo_details=$(gh repo view $repo_url --json name,description,url,repositoryTopics)
                 
-                # Use jq to format the details into a new YAML entry
+                # This 'jq' command has been corrected to properly find the topics
                 new_entry=$(echo "$repo_details" | jq -r --arg image_path "$cover_image_path" '
                   (
                     "- name: \"\(.name)\"\n" +
                     "  image: \"\($image_path)\"\n" +
-                    "  description: \"\(.description // "No description provided.")\"\n" +
-                    "  tech: \((.repositoryTopics // []) | map(.topic.name) | tojson)\n" +
+                    "  description: \"\(if .description and .description != "" then .description else "No description provided." end)\"\n" +
+                    "  tech: \((.repositoryTopics.nodes // []) | map(.topic.name) | tojson)\n" + # <-- THIS IS THE CORRECTED LINE
                     "  github_url: \"\(.url)\"\n" +
                     "  demo_url: \"\""
                   )
                 ')
 
-                # Append the new entry to the projects data file
                 echo -e "\n${new_entry}" >> _data/projects.yml
                 echo "Added ${repo_url} to _data/projects.yml"
               else
@@ -82,18 +67,15 @@ jobs:
             fi
           done < all_public_repos.txt
 
-          # If we made changes, the auto-commit action will run. If not, it will do nothing.
           if [ "$changes_made" = true ]; then
             echo "Changes were made. Proceeding to commit."
-            # Set an output for the next step to use
             echo "changes=true" >> $GITHUB_OUTPUT
           else
             echo "No new projects to add. Exiting."
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
-        id: discover # Give an ID to this step to reference its outputs
+        id: discover
 
-      # 3. Commits the changes back to your repository ONLY if changes were made
       - name: Commit and push if files changed
         if: steps.discover.outputs.changes == 'true'
         uses: stefanzweifel/git-auto-commit-action@v5
