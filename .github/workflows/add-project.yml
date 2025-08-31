@@ -18,8 +18,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USER: ${{ github.repository_owner }}
-        # This entire 'run' block has been rewritten for stability
         run: |
+          # This entire script is a single block. Indentation is critical.
           sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
 
           echo "Fetching existing projects from _data/projects.yml..."
@@ -48,13 +48,13 @@ jobs:
                 
                 repo_details=$(gh repo view $repo_url --json name,description,url,repositoryTopics)
                 
-                # Extract each piece of data into a shell variable using jq
+                # Extract each piece of data into a shell variable
                 repo_name=$(echo "$repo_details" | jq -r '.name')
                 repo_desc=$(echo "$repo_details" | jq -r 'if .description and .description != "" then .description else "No description provided." end')
                 repo_url_val=$(echo "$repo_details" | jq -r '.url')
                 repo_topics=$(echo "$repo_details" | jq -r '(if .repositoryTopics | has("nodes") then .repositoryTopics.nodes else .repositoryTopics end // []) | map("- " + .topic.name) | .[]')
 
-                # Use a heredoc to safely build the YAML entry, preventing quote issues
+                # Use a heredoc to safely build the YAML entry
                 new_entry=$(cat <<EOF
 
 - name: "${repo_name}"
