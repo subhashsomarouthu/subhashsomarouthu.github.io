@@ -81,3 +81,10 @@
   tech: []
   github_url: "https://github.com/subhashsomarouthu/Sentiment_Analysis_transformer"
   demo_url: ""
+
+- name: "VGG16_Image_classification"
+  image: "assets/img/portfolio/image_classification.jpg"
+  description: ""
+  tech: []
+  github_url: "https://github.com/subhashsomarouthu/VGG16_Image_classification"
+  demo_url: ""
