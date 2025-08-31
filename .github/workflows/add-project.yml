@@ -1,7 +1,6 @@
 name: Nightly Portfolio Update
 
 on:
-  # CORRECTED: 'workflow_dispatch' and 'schedule' are now at the same indentation level.
   workflow_dispatch:
   schedule:
     - cron: '0 3 * * *'
@@ -48,20 +47,30 @@ jobs:
                 
                 repo_details=$(gh repo view $repo_url --json name,description,url,repositoryTopics)
                 
-                # CORRECTED: The entire jq command is now the final, robust version.
-                # It correctly handles topics and puts quotes around all values to prevent errors.
-                new_entry=$(echo "$repo_details" | jq -r --arg image_path "$cover_image_path" '
-                  (
-                    "- name: \"\(.name)\"\n" +
-                    "  image: \"\($image_path)\"\n" +
-                    "  description: \"\(if .description and .description != "" then .description else "No description provided." end)\"\n" +
-                    "  tech: \((if .repositoryTopics | has(\"nodes\") then .repositoryTopics.nodes else .repositoryTopics end // []) | map(.topic.name) | tojson)\n" +
-                    "  github_url: \"\(.url)\"\n" +
-                    "  demo_url: \"\""
-                  )
-                ')
+                repo_name=$(echo "$repo_details" | jq -r '.name')
+                repo_desc=$(echo "$repo_details" | jq -r 'if .description and .description != "" then .description else "No description provided." end')
+                repo_url_val=$(echo "$repo_details" | jq -r '.url')
+                repo_topics=$(echo "$repo_details" | jq -r '(.repositoryTopics.nodes // []) | map(.topic.name) | .[]?')
 
-                echo -e "\n${new_entry}" >> _data/projects.yml
+                # Build tech section safely
+                if [ -n "$repo_topics" ]; then
+                  tech_block=$(echo "$repo_topics" | sed 's/^/    - /')
+                else
+                  tech_block="    []"
+                fi
+
+                new_entry=$(cat <<EOF
+
+- name: "${repo_name}"
+  image: "${cover_image_path}"
+  description: "${repo_desc}"
+  github_url: "${repo_url_val}"
+  demo_url: ""
+  tech:
+${tech_block}
+EOF
+)
+                echo "${new_entry}" >> _data/projects.yml
                 echo "Added ${repo_url} to _data/projects.yml"
               else
                 echo "Skipping ${repo_url}, no portfolio-cover image found."
